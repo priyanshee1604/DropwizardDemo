@@ -3,6 +3,8 @@ package org.example;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
+import org.example.health.TemplateHealthCheck;
+import org.example.resources.HelloWorldResource;
 
 public class trueApplication extends Application<trueConfiguration> {
 
@@ -21,11 +23,12 @@ public class trueApplication extends Application<trueConfiguration> {
     }
 
     @Override
-    public void run(final trueConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
-        System.out.println("Template: " + configuration.getTemplate());
-        System.out.println("Default Name: " + configuration.getDefaultName());
+    public void run(final trueConfiguration configuration, final Environment environment) {
+        HelloWorldResource resource = new HelloWorldResource(configuration.getTemplate(), configuration.getDefaultName());
+        environment.jersey().register(resource);
+
+        TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
+        environment.healthChecks().register("template", healthCheck);
     }
 
 }

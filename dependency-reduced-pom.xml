@@ -135,20 +135,6 @@
       <scope>import</scope>
     </dependency>
   </dependencies>
-  <reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <configuration>
-          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-          <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </reporting>
   <dependencyManagement>
     <dependencies>
       <dependency>
